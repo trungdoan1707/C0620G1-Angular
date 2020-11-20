@@ -1,13 +1,27 @@
-<h3>Student Information</h3>
-<div class="card" style="width:400px">
-  <img class="card-img-top" [src]="studentInfor.image" alt="Card image">
-  <div class="card-body">
-    <h4 class="card-title">Name: {{studentInfor.name}}</h4>
-    <p class="card-text">Age: {{studentInfor.age}}</p>
-    <p class="card-text">Điểm: {{studentInfor.mark}}</p>
-    <p>Chấm điểm</p> <input class="form-control"
-                            [(ngModel)]="studentInfor.mark"
-                            type="number" max="10" min="0">
-  </div>
-</div>
-
+<h3>List Students</h3>
+<h3>Mark get Child = {{mark}}</h3>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Mark</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let studentInfor of students">
+    <td>{{studentInfor.id}}</td>
+    <td>{{studentInfor.name}}</td>
+    <td>{{studentInfor.age}}</td>
+    <td>{{studentInfor.mark}}</td>
+    <td>
+      <button class="btn btn-outline-warning" (click)="setDetail(studentInfor)">Detail</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<app-student-detail [studentChild]="studentParent"
+    (changeMarkChild)="getMark($event)"
+></app-student-detail>
